@@ -44,8 +44,8 @@ func GetEnv() string {
 	return *Local.Name
 }
 
-// Get setting as string
-func (e Environment) Get(setting string) (result string) {
+// GetString setting as string
+func (e Environment) GetString(setting string) (result string) {
 	environmentMap := fetchenvironment(e)
 	val, _ := environmentMap[setting]
 
@@ -53,8 +53,19 @@ func (e Environment) Get(setting string) (result string) {
 	return
 }
 
-// GetUint get setting as uint64
-func (e Environment) GetUint(setting string) uint64 {
+// GetUint get setting as uint
+func (e Environment) GetUint(setting string) uint {
+	var result uint
+
+	environmentMap := fetchenvironment(e)
+	val, _ := environmentMap[setting]
+	parse(val, &result)
+
+	return result
+}
+
+// GetUint64 get setting as uint64
+func (e Environment) GetUint64(setting string) uint64 {
 	var result uint64
 
 	environmentMap := fetchenvironment(e)
@@ -64,8 +75,19 @@ func (e Environment) GetUint(setting string) uint64 {
 	return result
 }
 
-// GetInt get setting as int64
-func (e Environment) GetInt(setting string) int64 {
+// GetInt get setting as int
+func (e Environment) GetInt(setting string) int {
+	var result int
+
+	environmentMap := fetchenvironment(e)
+	val, _ := environmentMap[setting]
+	parse(val, &result)
+
+	return result
+}
+
+// GetInt64 get setting as int64
+func (e Environment) GetInt64(setting string) int64 {
 	var result int64
 
 	environmentMap := fetchenvironment(e)
@@ -75,8 +97,8 @@ func (e Environment) GetInt(setting string) int64 {
 	return result
 }
 
-// GetFloat get setting as float64
-func (e Environment) GetFloat(setting string) float64 {
+// GetFloat64 get setting as float64
+func (e Environment) GetFloat64(setting string) float64 {
 	var strVal string
 
 	environmentMap := fetchenvironment(e)
