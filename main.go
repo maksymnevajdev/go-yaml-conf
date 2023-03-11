@@ -28,10 +28,10 @@ var configData map[*string]map[string]interface{}
 var re *regexp.Regexp
 
 func init() {
+	flag.Parse()
 	configData = make(map[*string]map[string]interface{})
 	re = regexp.MustCompile("^\\s*([\\w-]*)\\s*:\\s*(.*)\\s*")
 	Global.Name = &global
-
 	if len(os.Args) > 1 {
 		Local.Name = Env
 	} else {
