@@ -131,6 +131,28 @@ func (e Environment) GetSlice(setting string) (result []string) {
 	return
 }
 
+// GetSliceInt get setting as slice of strings
+func (e Environment) GetSliceInt(setting string) (result []int) {
+
+	for _, strVal := range e.GetSlice(setting) {
+		int64Val, _ := strconv.ParseInt(strVal, 10, 64)
+		result = append(result, int(int64Val))
+	}
+
+	return
+}
+
+// GetSliceInt64 get setting as slice of strings
+func (e Environment) GetSliceInt64(setting string) (result []int64) {
+
+	for _, strVal := range e.GetSlice(setting) {
+		int64Val, _ := strconv.ParseInt(strVal, 10, 64)
+		result = append(result, int64Val)
+	}
+
+	return
+}
+
 func fetchenvironment(e Environment) map[string]interface{} {
 	environmentMap, ok := configData[e.Name]
 	// singleton
