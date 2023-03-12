@@ -8,6 +8,7 @@ import (
 	"os"
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 var Env = flag.String("env", "local", "Please run app with environment -> ./app -env environment")
@@ -126,7 +127,7 @@ func (e Environment) GetSlice(setting string) (result []string) {
 	environmentMap := fetchenvironment(e)
 	val, _ := environmentMap[setting]
 
-	parse(val, &result)
+	result = strings.Split(val.(string), ",")
 	return
 }
 

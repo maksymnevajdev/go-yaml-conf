@@ -7,5 +7,6 @@ import (
 
 func main() {
 	fmt.Println(conf.Local.GetUint("id"))
-	fmt.Println(conf.Local.GetString("tokenSecret"))
+	fmt.Println(conf.Local.GetString("token_Secret"))
+	fmt.Println(conf.Local.GetSlice("slice"))
 }
